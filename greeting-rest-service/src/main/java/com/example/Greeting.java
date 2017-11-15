@@ -22,6 +22,18 @@ public class Greeting {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getGreeting(@HeaderParam("Accept-Language") String acceptLanguage) {
-        return "{\"greeting\":\"Hallo!\"}";
+        System.out.println("starting " + acceptLanguage);
+        String theGreeting = "";
+        if(acceptLanguage != null ) {
+          if (acceptLanguage.equals("en")) {
+            theGreeting = "Hello!";
+          } else {
+            theGreeting = "Hallo!";
+          } 
+        } else {
+          theGreeting = "Hallo!";
+        }
+        System.out.println("ready to return");
+        return "{\"greeting\":\"" + theGreeting + "\"}";
     }
 }
